@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import axios from "axios"
 
+
+const BASE_URL = import.meta.env.VITE_API_URL
 const Dashboard = () => {
     const [subjects, setSubjects] = useState([])
     const [name, setName] = useState("")
@@ -20,7 +22,7 @@ const Dashboard = () => {
     const fetchSubjects = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:5000/api/subjects",
+                `${BASE_URL}/api/subjects`,
                 { headers: { Authorization: `Bearer ${token}` } }
             )
             setSubjects(res.data.subjects)
@@ -35,7 +37,7 @@ const Dashboard = () => {
         setLoading(true)
         try {
             await axios.post(
-                "http://localhost:5000/api/subjects",
+                `${BASE_URL}/api/subjects`,
                 { name, examDate },
                 { headers: { Authorization: `Bearer ${token}` } }
             )
@@ -53,7 +55,7 @@ const Dashboard = () => {
     const deleteSubject = async (id) => {
         try {
             await axios.delete(
-                `http://localhost:5000/api/subjects/${id}`,
+                `${BASE_URL}/api/subjects/${id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             )
             fetchSubjects()
@@ -68,7 +70,7 @@ const Dashboard = () => {
         setAiPlan("")
         try {
             const res = await axios.get(
-                "http://localhost:5000/api/ai/study-plan",
+                `${BASE_URL}/api/ai/study-plan`,
                 { headers: { Authorization: `Bearer ${token}` } }
             )
             setAiPlan(res.data.plan)

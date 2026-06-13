@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
 const SubjectDetail = () => {
   const [tasks, setTasks] = useState([]);
   const [subject, setSubject] = useState(null);
@@ -20,7 +21,7 @@ const SubjectDetail = () => {
 
   const fetchSubject = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/subjects", {
+      const res = await axios.get(`${BASE_URL}/api/subjects`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const found = res.data.subjects.find((s) => s._id === id);
@@ -33,7 +34,7 @@ const SubjectDetail = () => {
   // Tasks Fetch Karo
   const fetchTasks = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/tasks/${id}`, {
+      const res = await axios.get(`${BASE_URL}/api/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTasks(res.data.tasks);
@@ -48,7 +49,7 @@ const SubjectDetail = () => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/api/tasks",
+        `${BASE_URL}/api/tasks`,
         {
           title,
           priority,
@@ -70,7 +71,7 @@ const SubjectDetail = () => {
   const toggleTask = async (taskId, completed) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/tasks/${taskId}`,
+        `${BASE_URL}/api/tasks/${taskId}`,
         { completed: !completed },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -83,7 +84,7 @@ const SubjectDetail = () => {
   // Task Delete Karo
   const deleteTask = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+      await axios.delete(`${BASE_URL}/api/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks();

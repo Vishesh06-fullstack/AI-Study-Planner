@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 
+const BASE_URL = import.meta.env.VITE_API_URL
 const Register = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -17,7 +18,7 @@ const Register = () => {
         setError("")
         try {
             const res = await axios.post(
-                "http://localhost:5000/api/auth/register",
+                `${BASE_URL}/api/auth/register`,
                 { name, email, password }
             )
 
