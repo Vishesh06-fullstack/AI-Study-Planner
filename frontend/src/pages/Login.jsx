@@ -5,7 +5,6 @@ import { useAuth } from "../context/AuthContext"
 import axios from "axios"
 
 const BASE_URL = import.meta.env.VITE_API_URL
-
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -25,7 +24,8 @@ const Login = () => {
             )
 
             if (res.data.token) {
-                login(res.data.user, res.data.token)
+                login(res.data.user, res.data.token) //local storage mai value daldo page reload hone pe bhi value same rahegi browser mai rhega
+                console.log(res.data.user);
                 navigate("/dashboard")
             } else {
                 setError(res.data.message)

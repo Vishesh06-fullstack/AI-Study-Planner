@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
+import Navbar from "../components/Navbar"
 import axios from "axios"
-
 
 const BASE_URL = import.meta.env.VITE_API_URL
 const Dashboard = () => {
@@ -94,28 +94,8 @@ const Dashboard = () => {
 
     return (
         <div className="min-h-screen bg-gray-950 text-white">
-
             {/* Navbar */}
-            <nav className="bg-gray-900 border-b border-gray-800 px-6 py-4">
-                <div className="max-w-6xl mx-auto flex justify-between items-center">
-                    <h1 className="text-xl font-bold text-white">
-                        📚 Study Planner
-                    </h1>
-                    <div className="flex items-center gap-4">
-                        <span className="text-gray-400">
-                            Hey, {user?.name}! 👋
-                        </span>
-                        <button
-                            onClick={logout}
-                            className="bg-red-600 hover:bg-red-700 
-                            px-4 py-2 rounded-lg text-sm transition"
-                        >
-                            Logout
-                        </button>
-                    </div>
-                </div>
-            </nav>
-
+            <Navbar/>
             <div className="max-w-6xl mx-auto px-6 py-8">
 
                 {/* AI Study Plan Section */}

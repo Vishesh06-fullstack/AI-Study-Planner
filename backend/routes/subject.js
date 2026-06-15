@@ -19,7 +19,9 @@ router.post('/' , protect , async(req , res) => {
 
 router.get('/' , protect , async(req , res) => {
     try{
-        const subjects = await Subject.find({user : req.user.id});
+        const subjects = await Subject.find(
+            {user : req.user.id}
+        );
         res.json({message : "Subjects fetched" , subjects});
     }
     catch(err){

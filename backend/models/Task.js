@@ -7,12 +7,12 @@ const taskSchema = new mongoose.Schema({
     },
     priority: {
         type: String,
-        enum: ['High', 'Medium', 'Low'],  // ← Capital karo!
-        default: 'Medium'                  // ← Sahi hai ab!
+        enum: ['High', 'Medium', 'Low'],  
+        default: 'Medium'                  
     },
     completed: {
         type: Boolean,
-        default: false                     // ← Yeh add karo!
+        default: false                    
     },
     subject: {
         type: mongoose.Schema.Types.ObjectId,

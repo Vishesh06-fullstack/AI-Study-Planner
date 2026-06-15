@@ -1,9 +1,7 @@
 // backend/routes/ai.js
-
 const express = require('express');
 const router = express.Router();
 const { GoogleGenAI } = require('@google/genai');
-
 const protect = require('../middleware/authMiddleware.js');
 const Task = require('../models/Task.js');
 const Subject = require('../models/Subject.js');
