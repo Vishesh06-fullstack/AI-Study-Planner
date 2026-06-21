@@ -20,6 +20,14 @@ app.get('/', (req, res) => {
     res.json({message: "Study Planner API Chal Raha Hai! 🚀"})
 })
 
+// Health Check Route — Keep Alive Ping ke liye
+app.get('/health', (req, res) => {
+    res.json({ 
+        status: "OK", 
+        timestamp: new Date().toISOString() 
+    })
+})
+
 app.listen(process.env.PORT, () => {
     console.log(`Server chal raha hai port ${process.env.PORT} pe! ✅`)
 })
